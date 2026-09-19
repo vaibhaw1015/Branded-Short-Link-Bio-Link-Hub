@@ -161,7 +161,7 @@ export const BioBuilder = () => {
       {/* Top Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px', flexWrap: 'wrap', gap: '14px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <Link to="/">
+          <Link to="/dashboard">
             <Button variant="secondary" size="sm">
               <ArrowLeft size={16} />
               Back

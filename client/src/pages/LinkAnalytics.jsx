@@ -35,7 +35,7 @@ export const LinkAnalytics = () => {
           <p style={{ color: 'var(--text-muted)', marginBottom: '20px' }}>
             {error?.response?.data?.message || 'The requested link was not found or access is denied.'}
           </p>
-          <Link to="/">
+          <Link to="/dashboard">
             <Button variant="secondary">Back to Dashboard</Button>
           </Link>
         </Card>
@@ -49,7 +49,7 @@ export const LinkAnalytics = () => {
     <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '24px 20px 60px' }}>
       {/* Header Bar */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '28px', flexWrap: 'wrap', gap: '16px' }}>
-        <Link to="/" style={{ textDecoration: 'none' }}>
+        <Link to="/dashboard" style={{ textDecoration: 'none' }}>
           <Button variant="secondary" size="sm">
             <ArrowLeft size={16} />
             Back to Hub

@@ -31,7 +31,7 @@ export const VerifyEmail = () => {
         setSuccess(true);
         login(res.data.user, res.data.accessToken);
         setTimeout(() => {
-          navigate('/');
+          navigate('/dashboard');
         }, 2000);
       }
     } catch (err) {

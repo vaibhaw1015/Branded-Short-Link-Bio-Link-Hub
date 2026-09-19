@@ -38,7 +38,7 @@ export const Signup = () => {
       const fieldErrors = err.response?.data?.errors;
       const msg = fieldErrors && fieldErrors.length > 0
         ? fieldErrors.map(e => e.message).join(', ')
-        : (err.response?.data?.message || 'Signup failed.');
+        : (err.response?.data?.message || (err.message === 'Network Error' ? 'Cannot reach server. Ensure backend is running at http://localhost:5000' : (err.message || 'Signup failed.')));
       setError(msg);
     } finally {
       setLoading(false);
@@ -131,6 +131,7 @@ export const Signup = () => {
                 placeholder="At least 6 characters"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                helperText="Must be at least 6 characters"
                 required
               />
 

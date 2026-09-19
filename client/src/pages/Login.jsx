@@ -26,7 +26,7 @@ export const Login = () => {
       const res = await api.post('/api/auth/login', { email, password });
       if (res.data.success) {
         login(res.data.user, res.data.accessToken);
-        navigate('/');
+        navigate('/dashboard');
       }
     } catch (err) {
       const fieldErrors = err.response?.data?.errors;
