@@ -14,13 +14,18 @@ import bioRoutes from './routes/bio.routes.js';
 
 const app = express();
 
+// Trust Render/Vercel reverse proxy — required for express-rate-limit to correctly read client IPs
+app.set('trust proxy', 1);
+
 // Security Headers via Helmet
 app.use(helmet({
   crossOriginResourcePolicy: { policy: 'cross-origin' }
 }));
 
 // Explicit CORS configuration (No wildcard with credentials)
-const allowedOrigins = [config.clientUrl, 'http://localhost:5173', 'http://127.0.0.1:5173'];
+// Strip trailing slash to prevent double-slash in generated URLs
+const normalizedClientUrl = config.clientUrl.replace(/\/$/, '');
+const allowedOrigins = [normalizedClientUrl, 'http://localhost:5173', 'http://127.0.0.1:5173'];
 app.use(cors({
   origin: (origin, callback) => {
     // allow requests with no origin (like mobile apps, curl, redirects)

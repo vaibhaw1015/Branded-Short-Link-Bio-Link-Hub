@@ -52,7 +52,7 @@ export const authController = {
       });
 
       // Simulated Email Delivery via Console Banner
-      const verificationUrl = `${config.clientUrl}/verify-email?token=${verificationToken}`;
+      const verificationUrl = `${config.clientUrl.replace(/\/$/, '')}/verify-email?token=${verificationToken}`;
       console.log('\n=============================================================');
       console.log('📬 [EMAIL VERIFICATION SIMULATION]');
       console.log(`To: ${user.email} (${user.name})`);
@@ -264,7 +264,7 @@ export const authController = {
       user.resetPasswordExpires = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
       await user.save();
 
-      const resetUrl = `${config.clientUrl}/reset-password?token=${resetToken}`;
+      const resetUrl = `${config.clientUrl.replace(/\/$/, '')}/reset-password?token=${resetToken}`;
       console.log('\n=============================================================');
       console.log('🔑 [PASSWORD RESET SIMULATION]');
       console.log(`To: ${user.email}`);
