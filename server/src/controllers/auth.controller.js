@@ -62,9 +62,8 @@ export const authController = {
 
       return res.status(201).json({
         success: true,
-        message: 'Account created! Please verify your email using the link logged to server console.',
-        simulatedVerificationUrl: config.nodeEnv !== 'production' ? verificationUrl : undefined,
-        verificationToken: config.nodeEnv !== 'production' ? verificationToken : undefined,
+        message: 'Account created! Copy your verification token below and paste it on the next screen to activate your account.',
+        verificationToken,
         userId: user._id
       });
     } catch (error) {

@@ -76,17 +76,28 @@ export const Signup = () => {
                   <span>Account Created Successfully!</span>
                 </div>
                 <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                  Per system requirements, email delivery is simulated. Your verification token has been logged to the server terminal.
+                  Your verification token is shown below. Copy it and paste it on the next screen to activate your account.
                 </p>
               </div>
 
               <div style={{ padding: '14px', borderRadius: '8px', background: 'rgba(255, 255, 255, 0.04)', border: '1px solid var(--border-color)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.78rem', color: 'var(--text-muted)', marginBottom: '8px' }}>
-                  <Terminal size={14} />
-                  <span>SIMULATED VERIFICATION TOKEN</span>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+                    <Terminal size={14} />
+                    <span>YOUR VERIFICATION TOKEN</span>
+                  </div>
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(verificationData.token || '');
+                      alert('Token copied to clipboard!');
+                    }}
+                    style={{ fontSize: '0.75rem', color: 'var(--accent-primary)', background: 'none', border: '1px solid var(--accent-primary)', borderRadius: '6px', padding: '2px 8px', cursor: 'pointer' }}
+                  >
+                    Copy
+                  </button>
                 </div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--accent-primary)', wordBreak: 'break-all' }}>
-                  {verificationData.token || 'Check server console'}
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: 'var(--accent-primary)', wordBreak: 'break-all', lineHeight: 1.6 }}>
+                  {verificationData.token || 'Token not returned — check server logs'}
                 </div>
               </div>
 
@@ -94,7 +105,7 @@ export const Signup = () => {
                 onClick={() => navigate(`/verify-email?token=${verificationData.token || ''}`)}
                 style={{ width: '100%' }}
               >
-                Proceed to Verify Email
+                Proceed to Verify Email →
               </Button>
             </div>
           ) : (
